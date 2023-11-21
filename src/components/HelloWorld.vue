@@ -1,130 +1,162 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+    <!-- display event data -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="@/assets/butbi.jpg" class="d-block w-100" alt="laptop" style="width: 100px" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="@/assets/vanphong.jpg" class="d-block w-100" alt="man with baby" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="@/assets/vp.jpg" class="d-block w-100" alt="fashion" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <section>
+      <div class="container">
+        <ul class="ulList">
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img src="@/assets/pen.jpg" alt="" class="rounded mx-auto d-block" />
+              </div>
+              <div>
+                <p style="text-align: center">các loại but</p>
+              </div>
+            </a>
+          </li>
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img src="@/assets/paper.jpg" alt="" srcset="" class="rounded mx-auto d-block" />
+              </div>
+              <div>
+                <p style="text-align: center">các loại giấy</p>
+              </div>
+            </a>
+          </li>
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img
+                  src="@/assets/studentstuff.jpg"
+                  alt=""
+                  srcset=""
+                  class="rounded mx-auto d-block"
+                />
+              </div>
+              <div>
+                <p style="text-align: center">dung cu hoc sinh</p>
+              </div>
+            </a>
+          </li>
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img src="@/assets/veshinh.jpg" alt="" class="rounded mx-auto d-block" />
+              </div>
+              <div>
+                <p style="text-align: center">Do dung ve sinh</p>
+              </div>
+            </a>
+          </li>
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img src="@/assets/kepa4.jpg" alt="" srcset="" class="rounded mx-auto d-block" />
+              </div>
+              <div>
+                <p style="text-align: center">Kep a4</p>
+              </div>
+            </a>
+          </li>
+          <li class="col" style="display: inline-block">
+            <a href="" style="text-decoration: none">
+              <div>
+                <img src="@/assets/dapghim.jpg" alt="" srcset="" class="rounded mx-auto d-block" />
+              </div>
+              <div>
+                <p style="text-align: center">Dap ghim tai lieu</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
-  },
+  // props: {
+  //   msg: String,
+  //   event: Object,
+  // },
+  // eslint-disable-next-line no-dupe-keys
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+<style scoped></style>
