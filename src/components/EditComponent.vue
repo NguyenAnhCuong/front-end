@@ -91,6 +91,7 @@
 <script>
 // import axios from "axios";
 import penApi from "@/api/penApi";
+import { toast } from "@/util/common";
 export default {
   data() {
     return {
@@ -128,9 +129,11 @@ export default {
           console.log(response);
           //redirect to PenList page
           this.$router.push({ name: "PenList" });
+          toast.success("Edit item Success!!!");
         });
       } catch (error) {
         console.error("Error fetching pen data:", error);
+        toast.error("fail to edit item");
       }
     },
     GetFormValue(form) {

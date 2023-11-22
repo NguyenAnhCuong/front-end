@@ -59,7 +59,9 @@ export default {
     EditEvent() {
       this.$router.push({ name: "EditComponent", params: { id: this.pen.id } });
     },
-    RemoveEvent() {},
+    RemoveEvent() {
+      this.$router.push({ name: "RemovePage", params: { id: this.pen.id } });
+    },
   },
   props: ["pen"],
 };

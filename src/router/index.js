@@ -6,6 +6,8 @@ import PenList from "../views/PenList.vue";
 import EditComponent from "../components/EditComponent.vue";
 import AddItem from "../views/AddItem.vue";
 import AboutView from "../views/AboutView.vue";
+import RemovePage from "../views/RemovePage.vue";
+
 const routes = [
   {
     path: "/",
@@ -41,6 +43,11 @@ const routes = [
     path: "/AddItem",
     name: "AddItem",
     component: AddItem,
+  },
+  {
+    path: "/RemovePage?id=:id",
+    name: "RemovePage",
+    component: RemovePage,
   },
 ];
 
