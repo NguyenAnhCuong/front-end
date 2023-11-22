@@ -15,9 +15,7 @@
             <h5 data-id="title" class="card-title">{{ pen.name }}</h5>
 
             <p data-id="description" class="card-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, iste culpa praesentium
-              provident fugiat eligendi iure. Dolorum ipsam voluptas alias perspiciatis beatae
-              reiciendis. Nulla adipisci tempore assumenda hic velit deleniti!
+              {{ pen.description }}
             </p>
 
             <p class="card-text">

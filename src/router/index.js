@@ -4,6 +4,8 @@ import PaperList from "../views/PaperList.vue";
 import StudentList from "../views/StudentList.vue";
 import PenList from "../views/PenList.vue";
 import EditComponent from "../components/EditComponent.vue";
+import AddItem from "../views/AddItem.vue";
+import AboutView from "../views/AboutView.vue";
 const routes = [
   {
     path: "/",
@@ -11,12 +13,9 @@ const routes = [
     component: EventList,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/AddView.vue"),
+    path: "/About",
+    name: "AboutView",
+    component: AboutView,
   },
   {
     path: "/pen",
@@ -38,11 +37,17 @@ const routes = [
     name: "EditComponent",
     component: EditComponent,
   },
+  {
+    path: "/AddItem",
+    name: "AddItem",
+    component: AddItem,
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  mode: "history",
 });
 
 export default router;

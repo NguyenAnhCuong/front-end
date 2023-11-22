@@ -24,7 +24,7 @@
           <li class="nav-item"><router-link class="nav-link" to="#">Kep A4</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="#">Dap ghim</router-link></li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">Add New item</router-link>
+            <router-link class="nav-link" to="/About">About</router-link>
           </li>
         </ul>
       </div>

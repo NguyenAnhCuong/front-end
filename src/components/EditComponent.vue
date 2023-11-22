@@ -6,7 +6,7 @@
       <div class="container">
         <div class="post-detail-main shadow-sm">
           <div class="post-title-wrapper">
-            <h1 id="postDetailTitle">Add edit a post</h1>
+            <h1 id="postDetailTitle">Edit a Item</h1>
 
             <p>
               <small class="text-muted"
@@ -30,13 +30,13 @@
             </div>
 
             <div class="form-group mb-3">
-              <label for="postType">Day product</label>
+              <label for="postDay">Day product</label>
               <input
                 id="postDay"
                 type="text"
                 class="form-control"
                 name="productDay"
-                placeholder="Type"
+                placeholder="Day product"
                 required
               />
               <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
@@ -70,7 +70,12 @@
 
             <div class="form-group mb-3">
               <label for="postDescription">Description</label>
-              <textarea id="postDescription" class="form-control" rows="3"></textarea>
+              <textarea
+                id="postDescription"
+                class="form-control"
+                name="description"
+                rows="3"
+              ></textarea>
             </div>
 
             <div class="text-center">
@@ -109,6 +114,7 @@ export default {
           document.getElementById("postDay").value = this.penData.productDay;
           document.getElementById("postColor").value = this.penData.color;
           document.getElementById("postPrice").value = this.penData.price;
+          document.getElementById("postDescription").value = this.penData.description;
         }
 
         const submitForm = document.getElementById("postForm");

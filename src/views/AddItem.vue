@@ -6,7 +6,7 @@
       <div class="container">
         <div class="post-detail-main shadow-sm">
           <div class="post-title-wrapper">
-            <h1 id="postDetailTitle">Add edit a post</h1>
+            <h1 id="postDetailTitle">Add a Item</h1>
 
             <p>
               <small class="text-muted"
@@ -30,16 +30,15 @@
             </div>
 
             <div class="form-group mb-3">
-              <label for="postType">Day product</label>
+              <label for="postDay">Day product</label>
               <input
                 id="postDay"
                 type="text"
                 class="form-control"
                 name="productDay"
-                placeholder="Type"
+                placeholder="Day product"
                 required
               />
-              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
@@ -52,7 +51,6 @@
                 placeholder="Color of item"
                 required
               />
-              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
@@ -65,16 +63,20 @@
                 placeholder="Price of item"
                 required
               />
-              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
               <label for="postDescription">Description</label>
-              <textarea id="postDescription" class="form-control" rows="3"></textarea>
+              <textarea
+                id="postDescription"
+                class="form-control"
+                name="description"
+                rows="3"
+              ></textarea>
             </div>
 
             <div class="text-center">
-              <button name="submit" class="btn btn-primary">Save</button>
+              <button @click="handleSaveClick" class="btn btn-primary">Save</button>
             </div>
           </form>
         </div>
@@ -85,45 +87,50 @@
 
 <script>
 import penApi from "@/api/penApi";
+// import axios from "axios";
 export default {
   data() {
-    return {
-      penData: null,
-    };
+    return {};
   },
-  created() {
-    this.getData();
-  },
+  created() {},
   methods: {
-    async getData() {
+    handleSaveClick(event) {
+      event.preventDefault();
+      console.log("click");
+      const submitForm = document.getElementById("postForm");
+      if (submitForm) {
+        const formvalues = this.GetFormValue(submitForm);
+        const apiFormData = {
+          name: formvalues.name,
+          productDay: formvalues.productDay,
+          color: formvalues.color,
+          price: formvalues.price,
+          description: formvalues.description,
+        };
+        this.addItem(apiFormData);
+      }
+      //reset form
+      document.getElementById("postName").value = "";
+      document.getElementById("postDay").value = "";
+      document.getElementById("postColor").value = "";
+      document.getElementById("postPrice").value = "";
+      document.getElementById("postDescription").value = "";
+    },
+    async addItem(apiFormData) {
       try {
-        const submitForm = document.getElementById("postForm");
-        if (!submitForm) return;
-
-        submitForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          const formvalues = this.GetFormValue(submitForm);
-          console.log(formvalues);
-          const response = await penApi.add(formvalues);
-          console.log(response);
-          //redirect to PenList page
-          this.$router.push({ name: "PenList" });
-        });
+        const response = await penApi.add(apiFormData);
+        console.log(response);
+        this.$router.push({ name: "PenList" });
       } catch (error) {
         console.error("Error fetching pen data:", error);
       }
     },
     GetFormValue(form) {
       const formvalues = {};
-      // ["Name", "Day", "color", "Price"].forEach((name) => {
-      //   const field = form.querySelector(`[name="${name}"]`);
-      //   if (field) values[name] = field.value;
-      // });
       const data = new FormData(form);
       for (const [key, value] of data) {
         formvalues[key] = value;
       }
-
       return formvalues;
     },
   },

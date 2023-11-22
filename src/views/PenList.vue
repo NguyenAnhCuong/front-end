@@ -12,6 +12,12 @@
     />
   </div>
 
+  <div class="text-center" style="padding-bottom: 10px">
+    <button class="btn btn-light">
+      <router-link to="/AddItem" class="router-link">Add New Item</router-link>
+    </button>
+  </div>
+
   <div class="penPage">
     <nav class="posts-nav" aria-label="Posts navigation">
       <ul id="pagination" class="pagination justify-content-center">
@@ -136,6 +142,10 @@ export default {
 <style scoped>
 .penPage {
   font-size: 15px;
+}
+.router-link {
+  text-align: center;
+  text-decoration-line: none;
 }
 
 .pagination {
