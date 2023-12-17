@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import penApi from "@/api/penApi";
+import paperApi from "@/api/paperApi";
 import { toast } from "@/util/common";
 export default {
   data() {
@@ -98,26 +98,26 @@ export default {
   methods: {
     async getData() {
       const searchParams = new URLSearchParams(window.location.search);
-      const penId = searchParams.get("id");
-      const response = await penApi.getById(penId);
-      this.penData = response;
-      if (penId) {
-        document.getElementById("postName").value = this.penData.name;
-        document.getElementById("postDay").value = this.penData.productDay;
-        document.getElementById("postColor").value = this.penData.color;
-        document.getElementById("postPrice").value = this.penData.price;
-        document.getElementById("postDescription").value = this.penData.description;
+      const paperId = searchParams.get("id");
+      const response = await paperApi.getById(paperId);
+      this.paperData = response;
+      if (paperId) {
+        document.getElementById("postName").value = this.paperData.name;
+        document.getElementById("postDay").value = this.paperData.productDay;
+        document.getElementById("postColor").value = this.paperData.color;
+        document.getElementById("postPrice").value = this.paperData.price;
+        document.getElementById("postDescription").value = this.paperData.description;
       }
     },
     async handleClick(e) {
       try {
         e.preventDefault();
         const searchParams = new URLSearchParams(window.location.search);
-        const penId = searchParams.get("id");
-        const response = await penApi.remove(penId);
+        const paperId = searchParams.get("id");
+        const response = await paperApi.remove(paperId);
         console.log(response);
         toast.success("Thank you for purchase!!");
-        this.$router.push({ name: "PenList" });
+        this.$router.push({ name: "PaperList" });
       } catch (error) {
         console.log("fail to purchase");
         toast.error("Purchase Error");

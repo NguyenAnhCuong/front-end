@@ -23,4 +23,4 @@ const paperApi = {
     return axiosClient.delete(url);
   },
 };
-export default penApi;
+export default paperApi;

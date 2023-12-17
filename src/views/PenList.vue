@@ -14,7 +14,7 @@
 
   <div class="text-center" style="padding-bottom: 10px">
     <button class="btn btn-light">
-      <router-link to="/AddItem" class="router-link">Add New Item</router-link>
+      <router-link to="/addpen" class="router-link">Add New Item</router-link>
     </button>
   </div>
 

@@ -6,7 +6,7 @@
       <div class="container">
         <div class="post-detail-main shadow-sm">
           <div class="post-title-wrapper">
-            <h1 id="postDetailTitle">Buy a Item</h1>
+            <h1 id="postDetailTitle">Edit a Item</h1>
 
             <p>
               <small class="text-muted"
@@ -39,6 +39,7 @@
                 placeholder="Day product"
                 required
               />
+              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
@@ -51,6 +52,7 @@
                 placeholder="Color of item"
                 required
               />
+              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
@@ -63,6 +65,7 @@
                 placeholder="Price of item"
                 required
               />
+              <!-- <div class="invalid-feedback">Please enter author of this post!</div> -->
             </div>
 
             <div class="form-group mb-3">
@@ -76,7 +79,7 @@
             </div>
 
             <div class="text-center">
-              <button @click="handleClick" class="btn btn-primary">Buy</button>
+              <button name="submit" class="btn btn-primary">Save</button>
             </div>
           </form>
         </div>
@@ -86,42 +89,65 @@
 </template>
 
 <script>
-import penApi from "@/api/penApi";
+// import axios from "axios";
+import paperApi from "@/api/paperApi";
 import { toast } from "@/util/common";
 export default {
   data() {
-    return {};
+    return {
+      paperData: null,
+    };
   },
   created() {
     this.getData();
   },
   methods: {
     async getData() {
-      const searchParams = new URLSearchParams(window.location.search);
-      const penId = searchParams.get("id");
-      const response = await penApi.getById(penId);
-      this.penData = response;
-      if (penId) {
-        document.getElementById("postName").value = this.penData.name;
-        document.getElementById("postDay").value = this.penData.productDay;
-        document.getElementById("postColor").value = this.penData.color;
-        document.getElementById("postPrice").value = this.penData.price;
-        document.getElementById("postDescription").value = this.penData.description;
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        // console.log(searchParams);
+        const paperId = searchParams.get("id");
+        // console.log(penId);
+        const response = await paperApi.getById(paperId);
+        this.paperData = response;
+        if (paperId) {
+          document.getElementById("postName").value = this.paperData.name;
+          document.getElementById("postDay").value = this.paperData.productDay;
+          document.getElementById("postColor").value = this.paperData.color;
+          document.getElementById("postPrice").value = this.paperData.price;
+          document.getElementById("postDescription").value = this.paperData.description;
+        }
+
+        const submitForm = document.getElementById("postForm");
+        if (!submitForm) return;
+
+        submitForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const formvalues = this.GetFormValue(submitForm);
+          console.log(formvalues);
+          const response = await paperApi.update(paperId, formvalues);
+          console.log(response);
+          //redirect to PenList page
+          this.$router.push({ name: "PaperList" });
+          toast.success("Edit item Success!!!");
+        });
+      } catch (error) {
+        console.error("Error fetching pen data:", error);
+        toast.error("fail to edit item");
       }
     },
-    async handleClick(e) {
-      try {
-        e.preventDefault();
-        const searchParams = new URLSearchParams(window.location.search);
-        const penId = searchParams.get("id");
-        const response = await penApi.remove(penId);
-        console.log(response);
-        toast.success("Thank you for purchase!!");
-        this.$router.push({ name: "PenList" });
-      } catch (error) {
-        console.log("fail to purchase");
-        toast.error("Purchase Error");
+    GetFormValue(form) {
+      const formvalues = {};
+      // ["Name", "Day", "color", "Price"].forEach((name) => {
+      //   const field = form.querySelector(`[name="${name}"]`);
+      //   if (field) values[name] = field.value;
+      // });
+      const data = new FormData(form);
+      for (const [key, value] of data) {
+        formvalues[key] = value;
       }
+
+      return formvalues;
     },
   },
 };

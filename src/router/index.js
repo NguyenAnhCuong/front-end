@@ -7,7 +7,8 @@ import EditComponent from "../components/EditComponent.vue";
 import AddItem from "../views/AddItem.vue";
 import AboutView from "../views/AboutView.vue";
 import RemovePage from "../views/RemovePage.vue";
-
+import RemovePaper from "../views/RemovePaper.vue";
+import EditPaper from "../components/EditPaper.vue";
 const routes = [
   {
     path: "/",
@@ -48,6 +49,26 @@ const routes = [
     path: "/RemovePage?id=:id",
     name: "RemovePage",
     component: RemovePage,
+  },
+  {
+    path: "/RemovePaper?id=:id",
+    name: "RemovePaper",
+    component: RemovePaper,
+  },
+  {
+    path: "/EditPaper?id=:id",
+    name: "EditPaper",
+    component: EditPaper,
+  },
+  {
+    path: "/addpen",
+    name: "AddPen",
+    component: () => import("../components/AddPen"),
+  },
+  {
+    path: "/addpaper",
+    name: "AddPaper",
+    component: () => import("../components/AddPaper"),
   },
 ];
 

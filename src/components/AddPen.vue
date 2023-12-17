@@ -1,12 +1,16 @@
 <template>
   <div>
+    <nav class="d-flex justify-content-center align-items-center">
+      <router-link to="/addpen">Pen</router-link> |
+      <router-link to="/addpaper">Paper</router-link>
+    </nav>
     <!-- <section id="postHeroImage" class="hero"></section> -->
 
     <section class="post-detail">
       <div class="container">
         <div class="post-detail-main shadow-sm">
           <div class="post-title-wrapper">
-            <h1 id="postDetailTitle">Buy a Item</h1>
+            <h1 id="postDetailTitle">Add a new pen</h1>
 
             <p>
               <small class="text-muted"
@@ -76,7 +80,7 @@
             </div>
 
             <div class="text-center">
-              <button @click="handleClick" class="btn btn-primary">Buy</button>
+              <button @click="handleSaveClick" class="btn btn-primary">Save</button>
             </div>
           </form>
         </div>
@@ -88,40 +92,53 @@
 <script>
 import penApi from "@/api/penApi";
 import { toast } from "@/util/common";
+// import axios from "axios";
 export default {
   data() {
     return {};
   },
-  created() {
-    this.getData();
-  },
+  created() {},
   methods: {
-    async getData() {
-      const searchParams = new URLSearchParams(window.location.search);
-      const penId = searchParams.get("id");
-      const response = await penApi.getById(penId);
-      this.penData = response;
-      if (penId) {
-        document.getElementById("postName").value = this.penData.name;
-        document.getElementById("postDay").value = this.penData.productDay;
-        document.getElementById("postColor").value = this.penData.color;
-        document.getElementById("postPrice").value = this.penData.price;
-        document.getElementById("postDescription").value = this.penData.description;
+    handleSaveClick(event) {
+      event.preventDefault();
+      console.log("click");
+      const submitForm = document.getElementById("postForm");
+      if (submitForm) {
+        const formvalues = this.GetFormValue(submitForm);
+        const apiFormData = {
+          name: formvalues.name,
+          productDay: formvalues.productDay,
+          color: formvalues.color,
+          price: formvalues.price,
+          description: formvalues.description,
+        };
+        this.addItem(apiFormData);
+      }
+      //reset form
+      document.getElementById("postName").value = "";
+      document.getElementById("postDay").value = "";
+      document.getElementById("postColor").value = "";
+      document.getElementById("postPrice").value = "";
+      document.getElementById("postDescription").value = "";
+
+      toast.success("Add New Item Success");
+      this.$router.push({ name: "PenList" });
+    },
+    async addItem(apiFormData) {
+      try {
+        const response = await penApi.add(apiFormData);
+        console.log(response);
+      } catch (error) {
+        console.error("Error fetching pen data:", error);
       }
     },
-    async handleClick(e) {
-      try {
-        e.preventDefault();
-        const searchParams = new URLSearchParams(window.location.search);
-        const penId = searchParams.get("id");
-        const response = await penApi.remove(penId);
-        console.log(response);
-        toast.success("Thank you for purchase!!");
-        this.$router.push({ name: "PenList" });
-      } catch (error) {
-        console.log("fail to purchase");
-        toast.error("Purchase Error");
+    GetFormValue(form) {
+      const formvalues = {};
+      const data = new FormData(form);
+      for (const [key, value] of data) {
+        formvalues[key] = value;
       }
+      return formvalues;
     },
   },
 };
